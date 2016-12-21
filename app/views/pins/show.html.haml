@@ -1,14 +1,15 @@
 #pin_show.row
 	.col-md-8.col-md-offset-2
-		.panle.panel-default
+		.panel.panel-default
 			.panel-heading.pin_image
 				= image_tag @pin.image.url
 			.panel-body
 				%h1= @pin.title
 				%p.description= @pin.description
-				/ %p
-				/ Submitted by 
-				/ = @pin.user.email
+				/ %h4 Comments:
+				/ - @pin.comments.each do |comment|
+				/ 	%p
+				/ 	= comment.comment
 			.panel-footer
 				.row
 					.col-md-6
@@ -21,5 +22,20 @@
 								%span.glyphicon.glyphicon-heart
 								= @pin.get_upvotes.size
 							-if user_signed_in?
+								= link_to "Comments",comments_pin_path, method: :get,class: "btn btn-default"
 								= link_to "Edit", edit_pin_path, class: "btn btn-default"
 								= link_to "Delete", pin_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default"
+			.panel-footer
+				= form_tag create_comment_path, method: "post" do
+					= hidden_field_tag "id", @pin.id
+					.form-group
+						= text_area_tag :comment
+					= submit_tag "Submit", class: "btn btn-primary"
+
+				/ = form_tag create_comment_path, html: { multipart: true } do |f|
+				/ 	/ .form-group
+				/ 	/ 	= f.input :title, input_html: { class: 'form-control' }
+				/ 	= hidden_field_tag "id", @pin.id
+				/ 	.form-group
+				/ 		= f.input :comment, input_html: { class: 'form-control' }
+				/ 	= f.button :submit, class: "btn btn-primary"

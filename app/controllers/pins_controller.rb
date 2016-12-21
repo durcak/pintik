@@ -1,12 +1,12 @@
 class PinsController < ApplicationController
-  before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote]	
+  before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :comments, :add_comment, :remove_comment]	
   before_action :authenticate_user!, except: [:index, :show]
   def index
     @pins = Pin.all.order("created_at DESC")
   end
 
   def show
-
+  	@comment = @pin.comments.create
   end
 
 	def new
@@ -15,6 +15,10 @@ class PinsController < ApplicationController
 
 	def list
 	  @pins = current_user.pins
+	end
+
+	def comments
+		@comments = @pin.comments
 	end
 
 	def create
@@ -52,6 +56,25 @@ class PinsController < ApplicationController
 	def downvote
 		@pin.downvote_by current_user
 		redirect_to :back
+	end
+
+  def add_comment
+  	comment = @pin.comments.create
+  	comment.title = "First comment."
+		comment.comment = params[:comment]
+		comment.save
+		redirect_to @pin
+    # pin = Post.find(params[:id])
+    # @pin.comments << Pin.new(params[:comment])
+  #   @comment = @pin.comments.new params[:comment]
+  #   if @comment.save
+	 #    redirect_to @pin
+		# end
+  #   redirect_to :action => :show, :id => @pin
+  end
+
+	def remove_comment
+
 	end
 
 	private
