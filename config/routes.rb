@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   end
 
   get  '/mypins' => 'lists#list', as: :users_pins
-  post "/pins/add_comment" => "pins#add_comment", :as => "add_new_comment_to_pins"
-  post 'comments' => 'comments#create', as: "create_comment"
+  # post "/pins/add_comment" => "pins#add_comment", :as => "add_new_comment_to_pins"
+  # post 'comments' => 'comments#create', as: "create_comment"
 
   root "pins#index"
-
+  
+  resources :comments, :only => [:create, :destroy]
   # resources :comments#, only: :create
 end

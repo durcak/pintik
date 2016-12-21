@@ -7,14 +7,11 @@
 					%h1 Comments:
 			.panel-body
 				- @comments.each do |comment|
-					- if comment.comment
-						%h4= comment.comment
-						%p
-						- if comment.user_id
-							= User.find(comment.user_id).email
-			.panel-footer
-				= form_tag create_comment_path, method: "post" do
-					= hidden_field_tag "id", @pin.id
-					.form-group
-						= text_area_tag :comment
-					= submit_tag "Submit", class: "btn btn-primary"
+					- if current_user == comment.user
+						= link_to "×", comment_path(comment), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this comment?", :disable_with => "×", :class => 'close'
+					%h4= comment.body
+					%p
+						= comment.user.email
+						%small= comment.updated_at
+					%hr
+					

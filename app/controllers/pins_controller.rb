@@ -1,12 +1,14 @@
 class PinsController < ApplicationController
   before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :comments, :add_comment, :remove_comment]	
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
   def index
     @pins = Pin.all.order("created_at DESC")
   end
 
   def show
-  	@comment = @pin.comments.create
+  	# @comment = @pin.comments.create
+		@comments = @pin.comment_threads.order('created_at desc')
+		@new_comment = Comment.build_from(@pin, current_user.id, "")
   end
 
 	def new
@@ -18,7 +20,7 @@ class PinsController < ApplicationController
 	end
 
 	def comments
-		@comments = @pin.comments
+		@comments = @pin.comment_threads.order('created_at desc')
 	end
 
 	def create
