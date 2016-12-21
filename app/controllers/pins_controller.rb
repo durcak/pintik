@@ -13,6 +13,10 @@ class PinsController < ApplicationController
 	  @pin = current_user.pins.build
 	end
 
+	def list
+	  @pins = current_user.pins
+	end
+
 	def create
 	  @pin = current_user.pins.build( pin_params )
 
