@@ -1,6 +1,7 @@
 class PinsController < ApplicationController
   before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :comments, :add_comment, :remove_comment]	
   before_action :authenticate_user!, except: [:index]
+  
   def index
     @pins = Pin.all.order("created_at DESC")
   end
@@ -58,6 +59,7 @@ class PinsController < ApplicationController
 	def upvote
 		if !current_user.voted_up_on? @pin
 			@pin.upvote_by current_user if @pin.user_id != current_user.id
+			@pin.create_activity(:like, owner: current_user)
 		else
 			downvote
 		end
@@ -66,22 +68,24 @@ class PinsController < ApplicationController
 
 	def downvote
 		@pin.downvote_by current_user
+		# activity = PublicActivity::Activity.find_by_trackable_id_and_key(@pin.id, "#{@pin.downcase}.like")
+    # activity.destroy if activity.present?
 	end
 
-	def follow
-    @pin = Pin.find(params[:id])
-    if !current_user.following?(@pin)
-    	current_user.follow(@pin) if @pin.user_id != current_user.id
-    else
-    	downfollow
-    end
-    redirect_to :back
-  end
+	# def follow
+ #    @pin = Pin.find(params[:id])
+ #    if !current_user.following?(@pin)
+ #    	current_user.follow(@pin) if @pin.user_id != current_user.id
+ #    else
+ #    	downfollow
+ #    end
+ #    redirect_to :back
+ #  end
 
-  def downfollow
-    @pin = Pin.find(params[:id])
-    current_user.stop_following(@pin)
-  end
+ #  def downfollow
+ #    @pin = Pin.find(params[:id])
+ #    current_user.stop_following(@pin)
+ #  end
 
   def add_comment
   	comment = @pin.comments.create
