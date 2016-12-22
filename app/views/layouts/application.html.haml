@@ -15,6 +15,7 @@
 				%ul.nav.navbar-nav.navbar-right
 					%li= link_to "New Pin", new_pin_path
 					%li= link_to "My Pins", users_pins_path
+					%li= link_to "Followed", followed_pins_path
 					%li= link_to "Account", edit_user_registration_path
 					%li= link_to "Sign_out", destroy_user_session_path, method: :delete
 			- else

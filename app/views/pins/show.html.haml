@@ -21,6 +21,9 @@
 							= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do
 								%span.glyphicon.glyphicon-heart
 								= @pin.get_upvotes.size
+							= link_to follow_pin_path(@pin), method: :put, class: "btn btn-default" do
+								Follow
+								= @pin.followers.size
 							-if user_signed_in?
 								= link_to "Comments",comments_pin_path, method: :get,class: "btn btn-default"
 								- if @pin.user_id == current_user.id

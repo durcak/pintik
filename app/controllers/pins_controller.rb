@@ -15,9 +15,14 @@ class PinsController < ApplicationController
 	  @pin = current_user.pins.build
 	end
 
-	def list
-	  @pins = current_user.pins
-	end
+	# def list
+	#   @pins = current_user.pins
+	#   @followed = current_user.all_follows
+	# end
+
+	# def followed
+	#   @followed = current_user.all_follows
+	# end
 
 	def comments
 		@comments = @pin.comment_threads.order('created_at desc')
@@ -51,14 +56,32 @@ class PinsController < ApplicationController
 	end
 
 	def upvote
-		@pin.upvote_by current_user
+		if !current_user.voted_up_on? @pin
+			@pin.upvote_by current_user if @pin.user_id != current_user.id
+		else
+			downvote
+		end
 		redirect_to :back
 	end
 
 	def downvote
 		@pin.downvote_by current_user
-		redirect_to :back
 	end
+
+	def follow
+    @pin = Pin.find(params[:id])
+    if !current_user.following?(@pin)
+    	current_user.follow(@pin) if @pin.user_id != current_user.id
+    else
+    	downfollow
+    end
+    redirect_to :back
+  end
+
+  def downfollow
+    @pin = Pin.find(params[:id])
+    current_user.stop_following(@pin)
+  end
 
   def add_comment
   	comment = @pin.comments.create
@@ -66,13 +89,6 @@ class PinsController < ApplicationController
 		comment.comment = params[:comment]
 		comment.save
 		redirect_to @pin
-    # pin = Post.find(params[:id])
-    # @pin.comments << Pin.new(params[:comment])
-  #   @comment = @pin.comments.new params[:comment]
-  #   if @comment.save
-	 #    redirect_to @pin
-		# end
-  #   redirect_to :action => :show, :id => @pin
   end
 
 	def remove_comment

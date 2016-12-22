@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/mrjlynch/acts_as_follower.git
+  revision: 7afa2d04b75ab302c95616ecfd63ba9cf83b5ae3
+  branch: rails_5
+  specs:
+    acts_as_follower (0.2.1)
+      activerecord (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,7 +46,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_commentable (4.0.2)
     acts_as_commentable_with_threading (2.0.1)
       activerecord (>= 4.0)
       activesupport (>= 4.0)
@@ -116,6 +123,11 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    public_activity (1.5.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
     puma (3.6.2)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -197,8 +209,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_commentable (~> 4.0, >= 4.0.2)
   acts_as_commentable_with_threading
+  acts_as_follower!
   acts_as_votable (~> 0.10.0)
   bootstrap-sass (~> 3.3, >= 3.3.7)
   byebug
@@ -210,6 +222,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   masonry-rails (~> 0.2.4)
   paperclip (~> 5.1)
+  public_activity
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   sass-rails (~> 5.0)
