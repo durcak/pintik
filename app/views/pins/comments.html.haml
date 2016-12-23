@@ -12,6 +12,7 @@
 					%h4= comment.body
 					%p
 						= comment.user.email
-						%small= comment.updated_at
+						%small= formatted_time(comment.updated_at)
+						
 					%hr
 					

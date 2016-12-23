@@ -1,0 +1,9 @@
+ <li class="list-group-item">
+<div class="activity-comment">
+  <div class="info">
+    <h4 class="name"><%= link_to activity.owner.email, users_pins_path(activity.owner) %></h4>
+    <h3 class="action">commented on a <%= link_to 'pin', activity.trackable.commentable %></h3>
+  </div>
+  <%= render 'shared/created_at', activity: activity %>
+</div>
+</li>
