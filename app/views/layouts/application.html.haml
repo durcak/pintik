@@ -1,4 +1,4 @@
-!!! 5
+/ !!! 5
 %html
 %head
 	%title Pintik
@@ -17,6 +17,8 @@
 					%li= link_to "My Pins", users_pins_path
 					%li= link_to "Followed", followed_pins_path
 					%li= link_to "News Feed", activities_index_path
+					%li= link_to "All users", users_list_path
+					%li= link_to "Friends", friends_list_path
 					%li= link_to "Account", edit_user_registration_path
 					%li= link_to "Sign_out", destroy_user_session_path, method: :delete
 			- else

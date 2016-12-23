@@ -1,0 +1,24 @@
+.col-md-10.col-md-offset-1
+	.row
+		.panel.panel-default
+			.panel-heading
+				.center
+					%h1 All users:
+			.panel-body
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th #
+							%th Email
+							%th Pins
+							%th
+						%tbody
+							- @users.each do |user|
+								%tr
+									%td= user.id
+									%td= user.email
+									%td= link_to "Pins", user_pins_path(user.id)
+									- if current_user.id != user.id && !(current_user.friends_with? user)
+										%td= link_to "Add friend", send_request_path(user.id),:method => :put
+									- if (current_user.friends_with? user)
+										%td= link_to "Remove friend", remove_friend_path(user.id), :method => :put

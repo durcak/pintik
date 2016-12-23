@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222193636) do
+ActiveRecord::Schema.define(version: 20161223151060) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20161222193636) do
     t.datetime "updated_at"
     t.index ["followable_id", "followable_type"], name: "fk_followables"
     t.index ["follower_id", "follower_type"], name: "fk_follows"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.string   "friendable_type"
+    t.integer  "friendable_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "blocker_id"
+    t.integer  "status"
   end
 
   create_table "pins", force: :cascade do |t|

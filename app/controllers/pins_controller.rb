@@ -16,15 +16,6 @@ class PinsController < ApplicationController
 	  @pin = current_user.pins.build
 	end
 
-	# def list
-	#   @pins = current_user.pins
-	#   @followed = current_user.all_follows
-	# end
-
-	# def followed
-	#   @followed = current_user.all_follows
-	# end
-
 	def comments
 		@comments = @pin.comment_threads.order('created_at desc')
 	end
@@ -72,20 +63,6 @@ class PinsController < ApplicationController
     # activity.destroy if activity.present?
 	end
 
-	# def follow
- #    @pin = Pin.find(params[:id])
- #    if !current_user.following?(@pin)
- #    	current_user.follow(@pin) if @pin.user_id != current_user.id
- #    else
- #    	downfollow
- #    end
- #    redirect_to :back
- #  end
-
- #  def downfollow
- #    @pin = Pin.find(params[:id])
- #    current_user.stop_following(@pin)
- #  end
 
   def add_comment
   	comment = @pin.comments.create

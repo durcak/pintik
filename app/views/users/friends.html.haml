@@ -1,0 +1,57 @@
+.col-md-10.col-md-offset-1
+	.row
+		.panel.panel-default
+			.panel-heading
+				.center
+					%h1 Friends:
+			.panel-body
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th #
+							%th Email
+							%th Pins
+							%th
+						%tbody
+							- @friends.each do |user|
+								%tr
+									%td= user.id
+									%td= user.email
+									%td= link_to "Pins", user_pins_path(user.id)
+									%td= link_to "Remove", remove_friend_path(user.id), :method => :put
+			.panel-heading
+				.center
+					%h1 Pending:
+			.panel-body
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th #
+							%th Email
+							%th Pins
+							%th
+						%tbody
+							- @pending.each do |user|
+								%tr
+									%td= user.id
+									%td= user.email
+									%td= link_to "Pins", user_pins_path(user.id), :method => :put
+			.panel-heading
+				.center
+					%h1 Requested:
+			.panel-body
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th #
+							%th Email
+							%th Pins
+							%th			
+						%tbody
+							- @requsted.each do |user|
+								%tr
+									%td= user.id
+									%td= user.email
+									%td= link_to "Pins", user_pins_path(user.id)
+									%td= link_to "Accept request", accept_request_path(user.id), :method => :put
+									%td= link_to "Decline request", decline_request_path(user.id),:method => :put
