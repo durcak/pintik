@@ -1,3 +1,4 @@
+<% if activity.trackable %>
 <div class="activity-comment">
   <div class="info">
     <h4 class="name"><%= link_to activity.owner.email, user_path(activity.owner) %></h4>
@@ -9,3 +10,4 @@
 	<%= fa_icon 'clock-o' %>
 	<%= relative_time(activity.created_at) %> ago
 </div>
+<% end %>
