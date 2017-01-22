@@ -7,7 +7,7 @@
 					%h1 Comments:
 			.panel-body
 				- @comments.each do |comment|
-					- if current_user == comment.user
+					- if current_user == comment.user || current_user.has_role?(:admin)
 						= link_to "×", comment_path(comment), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this comment?", :disable_with => "×", :class => 'close'
 					%h4= comment.body
 					%p

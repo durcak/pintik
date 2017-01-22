@@ -35,3 +35,10 @@ gem 'acts_as_commentable_with_threading'
 gem 'acts_as_follower', github: 'mrjlynch/acts_as_follower', branch: 'rails_5'
 gem 'has_friendship', '~> 1.0', '>= 1.0.2'
 gem 'public_activity'
+
+
+gem 'cancancan' # overovani prav
+gem 'rolify' # role
+
+gem 'exception_notification'
+gem 'better_errors'

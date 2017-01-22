@@ -1,7 +1,9 @@
 class PinsController < ApplicationController
   before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :comments, :add_comment, :remove_comment]	
-  before_action :authenticate_user!, except: [:index]
+  # before_action :authenticate_user! #, except: [:index]
   
+  load_and_authorize_resource
+
   def index
     @pins = Pin.all.order("created_at DESC")
   end
@@ -79,7 +81,7 @@ class PinsController < ApplicationController
 	private
 
 	def pin_params
-	  params.require(:pin).permit(:title, :description, :image)
+	  params.require(:pin).permit(:title, :description, :image, :user_id)
 	end
 
   def find_pin

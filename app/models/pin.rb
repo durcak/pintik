@@ -2,6 +2,8 @@ class Pin < ApplicationRecord
 	acts_as_votable
 	acts_as_commentable
 	acts_as_followable
+
+	resourcify
 	
 	include PublicActivity::Model
 	# tracked owner: Proc.new{ |controller, model| controller.current_user }

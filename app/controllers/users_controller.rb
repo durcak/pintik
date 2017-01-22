@@ -38,6 +38,4 @@ class UsersController < ApplicationController
 		redirect_to friends_list_path
 	end
 
-
-	
 end
