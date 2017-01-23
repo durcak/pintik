@@ -66,17 +66,17 @@ class PinsController < ApplicationController
 	end
 
 
-  def add_comment
-  	comment = @pin.comments.create
-  	comment.title = "First comment."
-		comment.comment = params[:comment]
-		comment.save
-		redirect_to @pin
-  end
+ #  def add_comment
+ #  	comment = @pin.comments.create
+ #  	comment.title = "First comment."
+	# 	comment.comment = params[:comment]
+	# 	comment.save
+	# 	redirect_to @pin
+ #  end
 
-	def remove_comment
+	# def remove_comment
 
-	end
+	# end
 
 	private
 
