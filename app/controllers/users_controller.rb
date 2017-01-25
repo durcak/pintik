@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :set_target, except: [:users, :pins, :friends]
+
 	def users
 		@users = User.all
 	end
@@ -15,27 +17,30 @@ class UsersController < ApplicationController
 	end
 
 	def send_request
-		@user = User.find(params[:id])
-		current_user.friend_request(@user)
+		current_user.friend_request(@target)
 		redirect_to users_list_path
 	end
 
 	def accept_request
-		@user = User.find(params[:id])
-		current_user.accept_request(@user)
+		current_user.accept_request(@target)
 		redirect_to friends_list_path
 	end
 
 	def decline_request
-		@user = User.find(params[:id])
-		current_user.decline_request(@user)
+		current_user.decline_request(@target)
 		redirect_to friends_list_path
 	end
 
 	def remove_friend
-		@user = User.find(params[:id])
-		current_user.remove_friend(@user)
+		current_user.remove_friend(@target)
 		redirect_to friends_list_path
+	end
+
+
+	private
+
+	def set_target
+	    @target = User.find(params[:id])
 	end
 
 end

@@ -15,6 +15,7 @@ class Ability
       can :read, :all
       can [:comments, :follow, :upvote, :downvote], Pin
       can [:create, :destroy], Comment, user_id: user.id
+      can [:accept_request, :decline_request, :remove_friend], User
     end
     #
     # The first argument to `can` is the action you are giving the user
