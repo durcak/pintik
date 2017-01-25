@@ -5,11 +5,5 @@ class ListsController < ApplicationController
 
 	def followed
 	  @followed = current_user.following_by_type('Pin')
-	  # @followed = current_user.all_follows
-	  puts "Followed size: #{@followed.size}"
-	  puts "User followed size: #{current_user.follow_count}"
-
-	  puts @followed.first.class
-	  puts @followed.first.class
 	end
 end

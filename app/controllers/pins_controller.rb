@@ -32,10 +32,6 @@ class PinsController < ApplicationController
 	  end
 	end
 
-	def edit
-
-	end
-
 	def update
 	  if @pin.update(pin_params)
 	    redirect_to @pin, notice: "Pin was updated"
@@ -64,19 +60,6 @@ class PinsController < ApplicationController
 		# activity = PublicActivity::Activity.find_by_trackable_id_and_key(@pin.id, "#{@pin.downcase}.like")
     # activity.destroy if activity.present?
 	end
-
-
- #  def add_comment
- #  	comment = @pin.comments.create
- #  	comment.title = "First comment."
-	# 	comment.comment = params[:comment]
-	# 	comment.save
-	# 	redirect_to @pin
- #  end
-
-	# def remove_comment
-
-	# end
 
 	private
 

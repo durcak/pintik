@@ -11,9 +11,10 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     else
-      can [:crud, :upvote, :downvote, :follow, :like], Pin, user_id: user.id
+      can :crud, Pin, user_id: user.id
       can :read, :all
-      can :comments, Pin
+      can [:comments, :follow, :upvote, :downvote], Pin
+      can [:create, :destroy], Comment, user_id: user.id
     end
     #
     # The first argument to `can` is the action you are giving the user
