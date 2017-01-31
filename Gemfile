@@ -49,3 +49,4 @@ gem 'rolify' # role
 
 gem 'exception_notification'
 gem 'better_errors'
+gem "binding_of_caller"
