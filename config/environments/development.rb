@@ -47,17 +47,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  #Needed for devise
-   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # Needed for devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  
-  end
+end

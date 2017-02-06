@@ -1,12 +1,11 @@
- 
 <% if activity.trackable %>
 	<li class="list-group-item">
-	  <div class="activity-pin">
-	    <div class="info">
-	      <h4 class="name"><%= link_to User.find(activity.trackable.follower_id).email, users_pins_path(activity.trackable.follower_id) %></h4>
-	      <h3 class="action">follow a <%= link_to Pin.find(activity.trackable.followable_id).title, pin_path(activity.trackable.followable_id) %></h3>
-	    </div>
-	    <%= render 'shared/created_at', activity: activity %>
-	  </div>
+		<div class="activity-pin">
+			<div class="info">
+				<h4 class="name"><%= link_to User.find(activity.trackable.follower_id).email, users_pins_path(activity.trackable.follower_id) %></h4>
+				<h3 class="action">follow a <%= link_to Pin.find(activity.trackable.followable_id).title, pin_path(activity.trackable.followable_id) %></h3>
+			</div>
+			<%= render 'shared/created_at', activity: activity %>
+		</div>
 	</li>
 <% end %>

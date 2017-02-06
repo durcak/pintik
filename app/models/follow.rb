@@ -1,6 +1,6 @@
 class Follow < ActiveRecord::Base
-	include PublicActivity::Model
-	tracked only: [:create] #owner: Proc.new{ |controller, model| controller.current_user }
+  include PublicActivity::Model
+  tracked only: [:create]
 
   extend ActsAsFollower::FollowerLib
   extend ActsAsFollower::FollowScopes
@@ -12,5 +12,4 @@ class Follow < ActiveRecord::Base
   def block!
     self.update_attribute(:blocked, true)
   end
-
 end

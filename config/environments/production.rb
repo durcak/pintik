@@ -47,7 +47,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -89,14 +89,4 @@ Rails.application.configure do
   config.assets.compile = true
   config.assets.digest = true
   config.serve_static_assets = true
-
-  # config.paperclip_defaults = {
-  #   storage: :s3,
-  #   s3_credentials: {
-  #     bucket: ENV.fetch('S3_BUCKET_NAME'),
-  #     access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-  #     secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-  #     s3_region: ENV.fetch('AWS_REGION'),
-  #   }
-  # }
 end

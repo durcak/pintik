@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :pins do
-  	member do 
-  		put 'like', to: "pins#upvote"
+    member do
+      put 'like', to: "pins#upvote"
       put 'follow', to: "follows#create"
-  		get "comments", to: "pins#comments"
-  	end
+      get "comments", to: "pins#comments"
+    end
   end
 
   get  '/mypins' => 'lists#list', as: :users_pins
@@ -20,8 +20,7 @@ Rails.application.routes.draw do
   get  '/friends' => 'users#friends', as: :friends_list
   get  '/followed' => 'lists#followed', as: :followed_pins
 
-
   root "pins#index"
-  
+
   resources :comments, :only => [:create, :destroy]
 end
